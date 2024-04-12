@@ -9,8 +9,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - '*.md'
 
 jobs:
   build:
@@ -46,7 +44,7 @@ jobs:
           cd $GITHUB_WORKSPACE/src
           chmod +x gradlew
           ./gradlew make generateUpdaterJson
-          cp **/build/*.zip $GITHUB_WORKSPACE/builds
+          cp $(find -name "*.zip") $GITHUB_WORKSPACE/builds
           cp build/updater.json $GITHUB_WORKSPACE/builds
 
       - name: Push builds
